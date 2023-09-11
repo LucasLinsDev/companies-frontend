@@ -1,11 +1,12 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header  class="bg-white">
       <q-toolbar>
         <q-btn
           flat
           dense
           round
+          color="primary"
           icon="menu"
           aria-label="Menu"
           class="menu-icon"
@@ -14,7 +15,13 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          <q-input
+            color="bg-white"
+            text-color="white"
+            class="search"
+            placeholder="Search"
+            icon="mdi-search"
+          />
         </q-toolbar-title>
           <q-btn color="white" text-color="primary" label="Adicionar Empresa"
               @click="openDrawer('right')"
@@ -44,7 +51,7 @@
 
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container  >
       <router-view />
     </q-page-container>
   </q-layout>
@@ -71,7 +78,9 @@ const openDrawer = (position) => {
 </script>
 
 <style>
-
+.search{
+  max-width:150px;
+}
 /* Estilo personalizado para controlar a animação do Drawer */
 .my-custom-drawer {
   background:#F8F8F8;
@@ -95,9 +104,9 @@ const openDrawer = (position) => {
   .hidden{
     display:flex !important;
   }
-  .menu-icon{
-    display:flex !important;
-  }
+.menu-icon{
+  display:flex !important;
+}
 }
 
 @media (max-width: 800px){

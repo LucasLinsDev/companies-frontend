@@ -1,5 +1,5 @@
 <template>
-  <form class="form-business">
+  <form class="form-business" @submit.prevent="registerBusiness">
     <h2 class="title primary text-bold">Cadastro Empresa</h2>
   <div class="row row-input">
     <div class="col-12 col-sm-12 col-md-6 q-pa-md">
@@ -78,7 +78,7 @@
         <q-btn color="white" text-color="black" label="Cancelar" />
       </div>
       <div class="q-pa-md">
-        <q-btn label="Cadastar Empresa" color="primary" />
+        <q-btn label="Cadastar Empresa" color="primary" type="submit"/>
       </div>
 
   </div>
@@ -86,10 +86,9 @@
 </template>
 
 <script setup>
-import useValidation from 'src/composables/useValidation'
+import { ref } from 'vue'
 import Input from 'src/components/Ui/Input.vue'
 import InputSelect from 'src/components/Ui/InputSelect.vue'
-
 
 const validationInputs={
   minLength3: [val => val.length > 5 || 'Mínimo 3 Letras'],
@@ -98,6 +97,25 @@ const validationInputs={
     validation: [val => val.length == 14 || 'Cnpj deve ter 14 números'],
     mask: '##.###.###/####-##'
   }
+}
+
+
+const form = ref({
+  name: '',
+    city_id: '',
+    cnpj: '',
+    email:'',
+    state_id: '',
+    category_id: '',
+    latitude: '',
+    longitude: '',
+    whatsapp_phone: '',
+    representantive_user: '',
+    notes: ''
+})
+
+const registerBusiness = () => {
+  alert("lucsa")
 }
 
 </script>

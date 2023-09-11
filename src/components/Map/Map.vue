@@ -1,5 +1,7 @@
 <template>
-  <div id="map" style="width: 100%; height: calc(100vh - 90px);"></div>
+ <q-page padding class="border-page" >
+  <div id="map" style="width: 100%; height: calc(100vh - 96px); padding:8px; border-radius:20px; overflow: hidden;"></div>
+ </q-page>
 </template>
 
 <script setup>
@@ -25,7 +27,11 @@ onMounted(()=>{
 //   addMakers(markers)
 // })
 
-
-
-
 </script>
+
+<style>
+.border-page{
+  background:#e0e0e0;
+}
+</style>
+
