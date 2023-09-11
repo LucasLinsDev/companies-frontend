@@ -77,24 +77,24 @@ export default function useMap () {
   }
 
   const setupClickHandler = () => {
-    if (!map.value) return;
+
+    let clickedOnMarker = false;
 
     map.value.on('click', function (event) {
-      let clickedOnMarker = false;
 
+      companySelect.value = false;
       map.value.forEachFeatureAtPixel(event.pixel, function (feature) {
+
         if (feature && feature.getId() !== undefined) {
-          console.log(feature.getId())
-          companySelect.value = feature.getId()
-          clickedOnMarker = true;
+          console.log(feature.getId());
+          companySelect.value = feature.getId();
+
         }
       });
 
-      if (!clickedOnMarker) {
-          companySelect.value = null
-      }
     });
   };
+
 
 
   return {
