@@ -1,7 +1,18 @@
 <template>
-  <q-page>
-    <h1>lorem</h1>
-  </q-page>
+    <div class="logo">
+      <img src="https://convicti.com.br/assets/images/r_footer-logo.webp" >
+    </div>
 </template>
-<script setup>
-</script>
+
+<style>
+.logo{
+  width:100%;
+  text-align:center;
+}
+.logo img{
+  width:360px;
+  margin:0 auto;
+  margin-bottom:36px;
+}
+</style>
+
