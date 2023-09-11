@@ -4,7 +4,7 @@ export default function useLoading () {
   const $q = useQuasar()
   const showLoading = () => {
     $q.loading.show({
-      delay:500
+      delay:200
     })
   }
 

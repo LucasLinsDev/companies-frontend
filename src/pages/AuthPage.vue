@@ -25,26 +25,36 @@ import Logo from 'src/components/Ui/Logo.vue'
 import Input from 'src/components/Ui/Input.vue'
 import Button from 'src/components/Ui/Button.vue'
 
-import useNotify from 'src/composablses/useNotify'
+import useNotify from 'src/composables/useNotify'
 import useLoading from 'src/composables/useLoading'
 import useValidation from 'src/composables/useValidation'
+import { userStore } from 'src/stores/userStore'
 
 const { showLoading, hideLoading  } = useLoading()
 const { notifyError, notifySuccess } = useNotify()
 const { authValidation } = useValidation()
+
 const form = ref({
   email: '',
   password: '',
 })
 
+const userAuth = userStore()
 
-const login = () => {
+const login = async () => {
 
-  if (authValidation(form.value.email,form.value.senha)) {
+  if (authValidation(form.value.email,form.value.password)) {
       return
   }
 
-  notifySuccess('Login')
+  try{
+    await userAuth.login(form.value)
+    notifySuccess('LOGANDO')
+  } catch (error){
+    notifyError('Error ao tentar fazer o login')
+  }
+
+
 }
 
 
