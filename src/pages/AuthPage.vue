@@ -5,7 +5,8 @@
       <Input
         label="E-mail"
         v-model:input="form.password"
-        type="text"
+        type="email"
+        placeholder="admin@email.com"
       />
       <Input
         label="Password"
@@ -19,26 +20,31 @@
 </template>
 
 <script setup>
-
+import { ref } from 'vue'
 import Logo from 'src/components/Ui/Logo.vue'
 import Input from 'src/components/Ui/Input.vue'
 import Button from 'src/components/Ui/Button.vue'
-import { ref } from 'vue'
-import useNotify from 'src/composables/useNotify'
 
+import useNotify from 'src/composablses/useNotify'
+import useLoading from 'src/composables/useLoading'
+import useValidation from 'src/composables/useValidation'
+
+const { showLoading, hideLoading  } = useLoading()
+const { notifyError, notifySuccess } = useNotify()
+const { authValidation } = useValidation()
 const form = ref({
   email: '',
   password: '',
 })
 
-const { notifyError, notifySuccess } = useNotify()
 
 const login = () => {
-  try{
-    notifySuccess('DEU CERTO')
-  } catch (error) {
-    notifyError('DEU CERTO')
+
+  if (authValidation(form.value.email,form.value.senha)) {
+      return
   }
+
+  notifySuccess('Login')
 }
 
 

@@ -14,35 +14,35 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
-    label: {
-      type: String,
-      default: 'Label'
-    },
-    placeholder :{
-      type: String,
-      default: 'Lorem ipsum'
-    },
-    inputType: {
-      type: String,
-      default: 'text'
-    },
-    rules: {
-      type: Array,
-      default: () =>[]
-    }
-})
+  label: {
+    type: String,
+    default: 'Label'
+  },
+  placeholder: {
+    type: String,
+    default: 'Lorem ipsum'
+  },
+  inputType: {
+    type: String,
+    default: 'text'
+  },
+  rules: {
+    type: Array,
+    default: () => []
+  }
+});
+
+const  emit  = defineEmits()
 const input = ref('');
 
 const inputComputed = computed({
   get: () => input.value,
   set: (val) => {
     input.value = val;
-    emit('update:input', val);
+    emit('update:input', val)
   },
 });
-
 </script>
-
