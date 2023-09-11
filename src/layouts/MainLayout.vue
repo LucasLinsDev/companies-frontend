@@ -8,31 +8,45 @@
           round
           icon="menu"
           aria-label="Menu"
-          @click="toggleSidebar"
+          @click="openDrawer('left')"
+
         />
 
         <q-toolbar-title>
           Quasar App
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn color="secondary" icon-right="mail" label="On Right"
+          @click="openDrawer('right')"
+        />
       </q-toolbar>
     </q-header>
-    <Sidebar :isOpen="isOpen" />
-
     <q-drawer
-        v-show="isOpen"
         side="right"
-
+        v-model="isOpenRight"
+        show-if-above
         bordered
         :width="800"
-        :breakpoint="500"
+        :breakpoint="800"
         :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
       >
         <q-scroll-area class="fit">
-
         </q-scroll-area>
-  </q-drawer>
+    </q-drawer>
+    <q-drawer
+
+        side="left"
+        v-model="isOpenLeft"
+        show-if-above
+        bordered
+        :width="356"
+        :breakpoint="356"
+        class="bg-primary no-border"
+      >
+
+          <Sidebar/>
+
+    </q-drawer>
 
     <q-page-container>
       <router-view />
@@ -40,82 +54,21 @@
   </q-layout>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+<script setup>
 import Sidebar from 'src/components/Sidebar/Sidebar.vue'
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+import { ref } from 'vue'
+
+const isOpenRight = ref(false)
+const isOpenLeft = ref(false)
+
+
+const openDrawer = (position) => {
+  if(position == 'right'){
+    isOpenRight.value = !isOpenRight.value
+  } else {
+    isOpenLeft.value = !isOpenLeft.value
   }
-]
-
-export default defineComponent({
-  name: 'MainLayout',
-
-  components: {
-    Sidebar
-  },
-
-  setup () {
-    const open = ref(false)
-    const openIs = ref(true)
-    const isOpen = ref(false)
-
-
-
-    return {
-      essentialLinks: linksList,
-      open,
-      isOpen,
-      toggleLeftDrawert () {
-        isOpen.value = !isOpen.value
-      },
-      toggleSidebar() {
-
-  isOpen.value = !isOpen.value
 
 }
-    }
-  }
-})
+
 </script>
