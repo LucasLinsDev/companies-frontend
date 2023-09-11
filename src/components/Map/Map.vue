@@ -1,12 +1,5 @@
 <template>
-
-  <button @click="addMakers(markers)">PLUS</button>
-  <button @click="flyTo(-21.2277,-21.2277,8)">fly</button>
-  <button>{{ companySelect }}</button>
   <div id="map" style="width: 100%; height: calc(100vh - 90px);"></div>
-
-
-
 </template>
 
 <script setup>
