@@ -29,6 +29,7 @@ import useNotify from 'src/composables/useNotify'
 import useLoading from 'src/composables/useLoading'
 import useValidation from 'src/composables/useValidation'
 import { userStore } from 'src/stores/userStore'
+import { useRouter } from 'vue-router'
 
 const { showLoading, hideLoading  } = useLoading()
 const { notifyError, notifySuccess } = useNotify()
@@ -40,6 +41,7 @@ const form = ref({
 })
 
 const userAuth = userStore()
+const router = useRouter()
 
 const login = async () => {
 
@@ -50,6 +52,7 @@ const login = async () => {
   try{
     await userAuth.login(form.value)
     notifySuccess('LOGANDO')
+    router.push('/admin')
   } catch (error){
     notifyError('Error ao tentar fazer o login')
   }
