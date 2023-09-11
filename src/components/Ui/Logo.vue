@@ -10,7 +10,8 @@
   text-align:center;
 }
 .logo img{
-  width:360px;
+  max-width:360px;
+  width:100%;
   margin:0 auto;
   margin-bottom:36px;
 }
