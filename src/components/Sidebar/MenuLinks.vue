@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
     <h5>MENUS</h5>
-    <q-btn color="white" text-color="black" label="Standard" class="w-100" />
+    <q-btn color="white" text-color="primary" label="Empresas" icon="business" to="/map" class="w-100"  />
   </div>
 </template>
 
@@ -17,8 +17,10 @@
   font-size:14px;
   padding-bottom:16px;
 }
-.menu button{
+.menu a{
   width:100%;
   border-radius:8px;
+  display:flex;
+  align-items: flex-start;
 }
 </style>

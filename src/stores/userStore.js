@@ -2,6 +2,8 @@ import { defineStore } from 'pinia'
 import { api } from 'boot/axios'
 import useLoading from 'src/composables/useLoading'
 const { showLoading, hideLoading } = useLoading()
+
+
 export const userStore = defineStore('user', {
 
   state:()=>({
@@ -29,6 +31,14 @@ export const userStore = defineStore('user', {
         throw new error
       }
       hideLoading()
+    },
+
+    async logout () {
+      this.$state.id = ''
+      this.$state.name = ''
+      this.$state.email = ''
+      this.$state.token = ''
+
     }
 
   }
