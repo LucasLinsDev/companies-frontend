@@ -2,48 +2,49 @@
   <div class="q-pa-md my-dialog" v-if="show" >
     <q-card class="my-card">
       <div class="floating-icon">
-        <q-icon name="favorite" color="red" size="24px" />
+        <q-icon name="business" color="primary" size="24px" />
       </div>
 
       <q-card-section>
-        <div class="text-h6">{{ empresa }}</div>
-        <div class="text-subtitle2">{{ representante }}</div>
+        <div class="text-h6 primary">{{ empresa }}</div>
+        <div class="text-subtitle2 primary">{{ representante }}</div>
       </q-card-section>
       <q-card-section>
-        <div class="row">
-          <div class="col-sm-6 col-6 col-md-6">
-            <q-icon name="favorite" size="2em" color="red" />  E-mail
-          </div>
-          <div class="col-sm-6 col-6 col-md-6">
-            <q-icon name="favorite" size="2em" color="red" />  email@email.com
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6 col-6 col-md-6">
-            E-mail
-          </div>
-          <div class="col-sm-6 col-6 col-md-6">
-            {{ email }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6 col-6 col-md-6">
-            Localização
-          </div>
-          <div class="col-sm-6 col-6 col-md-6">
-            {{ city }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6 col-6 col-md-6">
-            Categoria
-          </div>
-          <div class="col-sm-6 col-6 col-md-6">
-            {{ category }}
-          </div>
-        </div>
+      <div class="row">
+       <div class="col-12 col-sm-6 col-xs-12 row responsive-padding responsive-padding">
+        <q-icon name="email" color="primary" size="24px" />
+        <div class="text-subtitle2  gray primary mr-2"> E-mail</div>
+       </div>
+       <div class="col-12 col-sm-6 col-xs-12 row responsive-padding">
+        <q-icon name="email" color="primary" size="24px" />
+        <div class="text-subtitle2  gray primary mr-2">{{ email }}</div>
+       </div>
+      </div>
       </q-card-section>
-
+      <q-card-section>
+      <div class="row responsive-padding">
+       <div class="col-12 col-sm-6 col-xs-12 row responsive-padding">
+        <q-icon name="email" color="primary" size="24px" />
+        <div class="text-subtitle2  gray primary mr-2"> Localização </div>
+       </div>
+       <div class="col-12 col-sm-6 col-xs-12 row responsive-padding">
+        <q-icon name="email" color="primary" size="24px" />
+        <div class="text-subtitle2  gray primary mr-2">{{ city }}</div>
+       </div>
+      </div>
+      </q-card-section>
+      <q-card-section>
+      <div class="row responsive-padding">
+       <div class="col-12 col-sm-6 col-xs-12 row responsive-padding">
+        <q-icon name="email" color="primary" size="24px" />
+        <div class="text-subtitle2  gray primary mr-2"> Categoria </div>
+       </div>
+       <div class="col-12 col-sm-6 col-xs-12 row responsive-padding">
+        <q-icon name="email" color="primary" size="24px" />
+        <div class="text-subtitle2  gray primary mr-2 categoria">{{ category }}</div>
+       </div>
+      </div>
+      </q-card-section>
     </q-card>
     </div>
 </template>
@@ -66,7 +67,7 @@ const props = defineProps({
     },
     email: {
       type: String,
-      default: 'email@email.com'
+      default: 'E-mail'
     },
     city: {
       type: String,
@@ -90,11 +91,45 @@ const props = defineProps({
   padding:16px;
   z-index:99;
 }
+.my-card{
+  border-radius:26px !important;
+}
 .my-dialog {
   position: absolute !important;
   bottom: 120px;
   left: 0;
   width:600px;
 
+}
+.mr-2{
+  margin-left:8px;
+}
+
+.gray{
+  color:#AAA9A9
+}
+.categoria{
+  padding:8px;
+  background:#D4DEF6;;
+  border-radius:20px;
+  color:#96A0B9;
+  position:relative;
+  top:-8px;
+}
+
+@media (max-width:600px){
+  .responsive-padding{
+     padding:8px;
+  }
+  .my-dialog {
+    width:100%;
+    max-width:100%;
+
+  }
+
+  .my-card{
+    border-radius:0px !important;
+    bottom:-100px;
+  }
 }
 </style>
