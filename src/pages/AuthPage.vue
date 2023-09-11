@@ -23,12 +23,22 @@ import Logo from 'src/components/Ui/Logo.vue'
 import Input from 'src/components/Ui/Input.vue'
 import Button from 'src/components/Ui/Button.vue'
 import { ref } from 'vue'
+import useNotify from 'src/composables/useNotify'
 
 const form = ref({
   email: '',
   password: '',
 })
 
-const login = () => {}
+const { notifyError, notifySuccess } = useNotify()
+
+
+const login = () => {
+  try{
+    notifySuccess('DEU CERTO')
+  } catch (error) {
+    notifyError('DEU CERTO')
+  }
+}
 
 </script>
