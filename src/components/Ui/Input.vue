@@ -8,6 +8,7 @@
       v-model="inputComputed"
       :type="inputType"
       class="w-fullscreen"
+      :rules="rules"
     />
   </div>
 </template>
@@ -27,6 +28,10 @@ const props = defineProps({
     inputType: {
       type: String,
       default: 'text'
+    },
+    rules: {
+      type: Array,
+      default: () =>[]
     }
 })
 const input = ref('');

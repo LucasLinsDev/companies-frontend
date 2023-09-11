@@ -11,6 +11,7 @@
         label="Password"
         v-model:input="form.email"
         type="password"
+
       />
       <Button/>
     </form>
@@ -32,7 +33,6 @@ const form = ref({
 
 const { notifyError, notifySuccess } = useNotify()
 
-
 const login = () => {
   try{
     notifySuccess('DEU CERTO')
@@ -40,5 +40,7 @@ const login = () => {
     notifyError('DEU CERTO')
   }
 }
+
+
 
 </script>
