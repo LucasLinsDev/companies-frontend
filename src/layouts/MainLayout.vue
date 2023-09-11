@@ -20,7 +20,19 @@
     </q-header>
     <Sidebar :isOpen="isOpen" />
 
+    <q-drawer
+        v-show="isOpen"
+        side="right"
 
+        bordered
+        :width="800"
+        :breakpoint="500"
+        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
+      >
+        <q-scroll-area class="fit">
+
+        </q-scroll-area>
+  </q-drawer>
 
     <q-page-container>
       <router-view />
@@ -86,7 +98,9 @@ export default defineComponent({
 
   setup () {
     const open = ref(false)
+    const openIs = ref(true)
     const isOpen = ref(false)
+
 
 
     return {

@@ -11,7 +11,8 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: 'admin', component: () => import('pages/AdminPage.vue') }
+      { path: 'admin', component: () => import('pages/AdminPage.vue') },
+      { path: 'map', component: () => import('pages/MapPage.vue') }
     ],
     me:{
       required: true,
