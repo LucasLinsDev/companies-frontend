@@ -15,13 +15,7 @@
         />
 
         <q-toolbar-title>
-          <q-input
-            color="bg-white"
-            text-color="white"
-            class="search"
-            placeholder="Search"
-            icon="mdi-search"
-          />
+            <AutoComplete/>
         </q-toolbar-title>
           <q-btn color="white" text-color="primary" label="Adicionar Empresa"
               @click="openDrawer('right')"
@@ -60,6 +54,7 @@
 <script setup>
 import FormCompany from 'src/components/FormCompany/FormCompany.vue';
 import Sidebar from 'src/components/Sidebar/Sidebar.vue'
+import AutoComplete from 'src/components/Ui/AutoComplete.vue'
 import { ref } from 'vue'
 
 const isOpenRight = ref(false)
