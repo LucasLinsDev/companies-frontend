@@ -9,7 +9,12 @@ export default function useValidation () {
     }
   }
 
+  const minLength3 = () => {
+      return value.length >= 3 || 'Minimo de 3 letras'
+  }
+
   return {
-    authValidation
+    authValidation,
+    minLength3
   }
 }

@@ -8,6 +8,7 @@
           round
           icon="menu"
           aria-label="Menu"
+          class="menu-icon"
           @click="openDrawer('left')"
 
         />
@@ -15,24 +16,19 @@
         <q-toolbar-title>
           Quasar App
         </q-toolbar-title>
+          <q-btn color="white" text-color="primary" label="Adicionar Empresa"
+              @click="openDrawer('right')"
+          />
 
-        <q-btn color="secondary" icon-right="mail" label="On Right"
-          @click="openDrawer('right')"
-        />
       </q-toolbar>
     </q-header>
-    <q-drawer
-        side="right"
-        v-model="isOpenRight"
-        show-if-above
-        bordered
-        :width="800"
-        :breakpoint="800"
-        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
-      >
-        <q-scroll-area class="fit">
-        </q-scroll-area>
-    </q-drawer>
+
+    <q-dialog v-model="isOpenRight" position="right">
+      <div class="my-custom-drawer">
+
+          <FormCompany/>
+      </div>
+    </q-dialog>
     <q-drawer
 
         side="left"
@@ -40,7 +36,7 @@
         show-if-above
         bordered
         :width="356"
-        :breakpoint="356"
+        :breakpoint="800"
         class="bg-primary no-border"
       >
 
@@ -55,6 +51,7 @@
 </template>
 
 <script setup>
+import FormCompany from 'src/components/FormCompany/FormCompany.vue';
 import Sidebar from 'src/components/Sidebar/Sidebar.vue'
 import { ref } from 'vue'
 
@@ -72,3 +69,58 @@ const openDrawer = (position) => {
 }
 
 </script>
+
+<style>
+
+/* Estilo personalizado para controlar a animação do Drawer */
+.my-custom-drawer {
+  background:#F8F8F8;
+  position:absolute;
+  right:0;
+  top:0;
+  width:1400px;
+  padding:28px;
+  height:100vh !important;
+  animation: slideFromLeft 0.3s ease;
+  max-height:100vh !important;
+}
+.hidden{
+  display:none;
+}
+
+.menu-icon{
+  display:none !important;
+}
+@media (max-width: 600px){
+  .hidden{
+    display:flex !important;
+  }
+  .menu-icon{
+    display:flex !important;
+  }
+}
+
+@media (max-width: 800px){
+  .my-custom-drawer {
+    width:100%;
+    width:400px;
+  }
+}
+
+@media (min-width: 600px){
+.q-dialog__inner--minimized > div {
+    max-width: 860px;
+    max-height: 100vh;
+}
+
+}
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+</style>

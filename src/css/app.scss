@@ -17,10 +17,19 @@
   flex-direction: column;
   gap:16px;
   width:100%;
+
+}
+
+.q-field__control,.q-field__control-container {
+  color: var(--q-primary);
+
+  max-width: 100%;
+  outline: none;
 }
 
 .input-label{
-  font-size:18px;
+  font-size:16px;
+
 }
 
 .button-submit{

@@ -5,7 +5,7 @@
       <Input
         label="E-mail"
         v-model:input="form.password"
-        type="email"
+        inpu="email"
         placeholder="admin@email.com"
       />
       <Input

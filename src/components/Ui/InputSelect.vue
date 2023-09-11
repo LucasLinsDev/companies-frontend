@@ -3,7 +3,7 @@
     <label
     class="primary input-label"
     >{{ label }}</label>
-    <q-input
+    <q-select
       bg-color="white"
       filled
       :placeholder="placeholder"
@@ -15,9 +15,7 @@
       :mask="mask"
       :require="required"
     />
-    <!-- <q-tooltip :show="mostrarTooltip">
-      Mensagem indicativa aqui
-    </q-tooltip> -->
+
   </div>
 </template>
 
@@ -48,7 +46,7 @@ const props = defineProps({
   mask:{
     type: [String, Object],
   },
-  required:{
+  required: {
     type: Boolean,
     default:false
   }
