@@ -8,27 +8,50 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onUpdated  } from 'vue'
 import useMap from 'src/composables/useMap'
 import CardBusiness from 'src/components/Card/CardBusiness.vue'
 import { onMounted, onBeforeMount } from 'vue';
 
+import { storeToRefs } from 'pinia'
+import { useCompanies } from 'src/stores/useCompanies'
+import useLoading from 'src/composables/useLoading';
+import { QPullToRefresh } from 'quasar';
+const { initializeMap,addMakers, flyTo, companySelect, content,setupClickHandler  } = useMap()
 
 
-const { initializeMap,addMakers, flyTo, companySelect } = useMap()
+const useCompany = useCompanies()
+const { reset ,markers } = storeToRefs(useCompany)
+const { showLoading,hideLoading } = useLoading()
+
+
+const points = ref(markers)
 
 
 
+watch(points,()=>{
 
-const markers = [
-  { id: 1, lon: -51.2277, lat: -30.0346 },
-  { id: 2, lon: -52.2277, lat: -31.0346 }
-];
+  addMakers(points.value)
+  setupClickHandler()
+
+})
+
+watch((companySelect)=>(novo,velho)=>{
+  console.log(novo,velho)
+})
+
 
 onMounted(()=>{
   initializeMap()
-  addMakers(markers)
+  addMakers(points.value)
+
 })
+
+onBeforeMount(async()=>{
+  await useCompany.getCategories()
+  await useCompany.getStates()
+})
+
 
 
 

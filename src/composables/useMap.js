@@ -10,11 +10,14 @@ import VectorSource from 'ol/source/Vector';
 import OSM from 'ol/source/OSM';
 import Style from 'ol/style/Style';
 import Icon from 'ol/style/Icon';
+import useLoading from './useLoading';
 
 export default function useMap () {
+  const { showLoading, hideLoading } = useLoading()
   const map = ref(null)
   const vectorSource = new VectorSource()
   const companySelect = ref(null)
+  const content = ref(false)
   const initializeMap = () => {
     const initialCoords = [-14.2350, -21.9253]
     const initialZoom = 3
@@ -41,6 +44,7 @@ export default function useMap () {
   }
 
   const addMakers = (markers)=>{
+
     markers.forEach((markerInfo)=>{
       const marker = new Feature({
         geometry: new Point(fromLonLat([markerInfo.lon,markerInfo.lat])),
@@ -62,8 +66,14 @@ export default function useMap () {
 
     })
 
-    setupClickHandler()
+
   }
+
+  const resetMap =()=>{
+    content.value = true
+
+  }
+
 
   const flyTo = (lon, lat, zoom)=>{
     if(map.value) {
@@ -76,9 +86,8 @@ export default function useMap () {
     }
   }
 
-  const setupClickHandler = () => {
+  const setupClickHandler = async () => {
 
-    let clickedOnMarker = false;
 
     map.value.on('click', function (event) {
 
@@ -92,7 +101,8 @@ export default function useMap () {
         }
       });
 
-    });
+    })
+
   };
 
 
@@ -103,83 +113,11 @@ export default function useMap () {
     addMakers,
     flyTo,
     setupClickHandler,
-    companySelect
+    companySelect,
+    content,
+    resetMap
   }
 
 
 }
 
-
-
-// export default function useMap () {
-
-//   let map = null
-//   let zoneInitial = [-14.2350, -21.9253]
-//   let zoomInitial = 3;
-//   let vectorSource = new VectorSource()
-//   const markers = [
-//     { id: 1, lon: -51.2277, lat: -30.0346 },
-//     { id: 2, lon: -52.2277, lat: -31.0346 },
-
-//   ];
-
-//   const initializeMap = () => {
-//     map = new Map({
-//       target: 'map',
-//       layers: [
-//         new TileLayer({
-//           source: new OSM(),
-//         }),
-//       ],
-//       view: new View({
-//         center: zoneInitial,
-//         zoom: zoomInitial,
-//       })
-//     })
-//     vectorSource = new VectorSource();
-
-//     const vectorLayer = new VectorLayer({
-//       source: vectorSource,
-//     });
-
-//     map.addLayer(vectorLayer);
-
-//   }
-
-
-//   const addMarks = () =>{
-
-
-
-
-//     markers.forEach((markerInfo)=>{
-//       const marker = new Feature({
-//         geometry: new Point(fromLonLat([markerInfo.longitude, markerInfo.latitude])),
-//       });
-
-//       marker.setStyle(
-//         new Style({
-//           image: new Icon({
-//             anchor: [0.5, 46],
-//             anchorXUnits: 'fraction',
-//             anchorYUnits: 'pixels',
-//             src: 'https://docs.maptiler.com/openlayers/default-marker/marker-icon.png',
-//           }),
-//         })
-//       )
-//       console.log(marker);
-//       marker.setId(markerInfo.id);
-//       vectorSource.addFeature(marker);
-//     })
-
-//   }
-
-
-
-
-//   return {
-//     initializeMap,
-//     addMarks
-//   }
-
-// }

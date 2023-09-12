@@ -11,27 +11,21 @@
           aria-label="Menu"
           class="menu-icon"
           @click="openDrawer('left')"
-
         />
-
         <q-toolbar-title>
             <AutoComplete/>
         </q-toolbar-title>
           <q-btn color="white" text-color="primary" label="Adicionar Empresa"
               @click="openDrawer('right')"
           />
-
       </q-toolbar>
     </q-header>
-
     <q-dialog v-model="isOpenRight" position="right">
       <div class="my-custom-drawer">
-
           <FormCompany/>
       </div>
     </q-dialog>
     <q-drawer
-
         side="left"
         v-model="isOpenLeft"
         show-if-above
@@ -40,12 +34,9 @@
         :breakpoint="800"
         class="bg-primary no-border"
       >
-
           <Sidebar/>
-
     </q-drawer>
-
-    <q-page-container  >
+    <q-page-container>
       <router-view />
     </q-page-container>
   </q-layout>

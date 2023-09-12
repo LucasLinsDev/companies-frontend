@@ -52,7 +52,7 @@ const login = async () => {
   try{
     await userAuth.login(form.value)
     notifySuccess('LOGANDO')
-    router.push('/admin')
+     router.push('/map');
   } catch (error){
     notifyError('Error ao tentar fazer o login')
   }
