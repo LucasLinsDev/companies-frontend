@@ -26,12 +26,13 @@ export const userStore = defineStore('user', {
         // this.$state.email = data.user_logged.email
         // this.$state.token = data.access_token
 
-        return {
-          id: 1,
-          name: 'admin',
-          email: 'admin@admin',
-          token: 'token_user',
-        };
+        this.$state.id = 1
+        this.$state.name = 'admin'
+        this.$state.email = 'admin@admin'
+        this.$state.token = 'token_user'
+        localStorage.setItem('token','token_user')
+
+
 
       } catch (error) {
         console.log(error);
@@ -45,7 +46,7 @@ export const userStore = defineStore('user', {
       this.$state.name = ''
       this.$state.email = ''
       this.$state.token = ''
-
+      localStorage.removeItem('token');
     }
 
   }

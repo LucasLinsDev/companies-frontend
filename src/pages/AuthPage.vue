@@ -24,14 +24,14 @@ import { ref } from 'vue'
 import Logo from 'src/components/Ui/Logo.vue'
 import Input from 'src/components/Ui/Input.vue'
 import Button from 'src/components/Ui/Button.vue'
-
 import useNotify from 'src/composables/useNotify'
 import useLoading from 'src/composables/useLoading'
 import useValidation from 'src/composables/useValidation'
+
 import { userStore } from 'src/stores/userStore'
 import { useRouter } from 'vue-router'
 
-const { showLoading, hideLoading  } = useLoading()
+
 const { notifyError, notifySuccess } = useNotify()
 const { authValidation } = useValidation()
 
@@ -44,20 +44,16 @@ const userAuth = userStore()
 const router = useRouter()
 
 const login = async () => {
-
   if (authValidation(form.value.email,form.value.password)) {
       return
   }
-
   try{
     await userAuth.login(form.value)
     notifySuccess('LOGANDO')
-     router.push('/map');
+     router.push({ name: 'map' })
   } catch (error){
     notifyError('Error ao tentar fazer o login')
   }
-
-
 }
 
 

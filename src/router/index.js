@@ -27,12 +27,11 @@ export default route(function (/* { store, ssrContext } */) {
   })
 
   Router.beforeEach(async (to, from) => {
+
     if(to.meta?.auth) {
       const token = localStorage.getItem('token')
       if(!token){
-        return { name: 'login' }
-      }
-
+        return { name: 'login' }  }
     }
   })
 

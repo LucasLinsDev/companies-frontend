@@ -15,7 +15,6 @@
   </div>
 </template>
 
-
 <script setup>
 import { userStore } from 'src/stores/userStore'
 import { useRouter } from 'vue-router'
@@ -24,17 +23,20 @@ import useNotify from 'src/composables/useNotify'
 const router = useRouter()
 const { logout } = userStore()
 const { notifyError, notifySuccess } = useNotify()
+const userAuth = userStore()
 
-const handleLogout = () =>{
+const handleLogout = async() =>{
+
   try {
-      logout()
       notifySuccess('Logout efetuado com sucesso')
-      setTimeout(()=>{
-        router.push('/')
-      },500)
+      await logout()
+
+        router.replace({ name : 'login' })
+
   } catch (error){
     notifyError(error)
   }
+
 }
 
 </script>

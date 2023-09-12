@@ -76,16 +76,10 @@
   <div class="row flex align-center flex-center">
 
       <div class="q-pa-md">
-        <q-btn label="Cadastar Empresa" color="primary" type="submit"/>
+        <q-btn label="Cadastar Empresa" color="primary" type="submit" @click="addMark"/>
       </div>
-
   </div>
   </form>
-  <div class="q-pa-md">
-    <div class=" q-pa-md">
-        <q-btn color="white" text-color="black" label="aqui" @click="handleGamer" />
-      </div>
-      </div>
 </template>
 
 <script setup>
@@ -96,16 +90,13 @@ import InputSelect from 'src/components/Ui/InputSelect.vue'
 import useMap from 'src/composables/useMap'
 
 const useCompany = useCompanies()
-
 const validationInputs = {
-
   minLength3: [val => val.length > 5 || 'Mínimo 3 Letras'],
   numeroValidation: [val => val.length > 5 || 'Número Invalido'],
   cnpj: {
     validation: [val => val.length == 14 || 'Cnpj deve ter 14 números'],
     mask: '##.###.###/####-##'
   }
-
 }
 
 
@@ -126,8 +117,7 @@ const form = ref({
 
 
 
-const handleGamer = ()=>{
-
+const addMark = ()=>{
   useCompany.pushMarkers()
 }
 

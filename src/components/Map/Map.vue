@@ -8,16 +8,16 @@
 </template>
 
 <script setup>
+
 import { ref, watch, onUpdated  } from 'vue'
 import useMap from 'src/composables/useMap'
 import CardBusiness from 'src/components/Card/CardBusiness.vue'
 import { onMounted, onBeforeMount } from 'vue';
-
 import { storeToRefs } from 'pinia'
 import { useCompanies } from 'src/stores/useCompanies'
 import useLoading from 'src/composables/useLoading';
 import { QPullToRefresh } from 'quasar';
-const { initializeMap,addMakers, flyTo, companySelect, content,setupClickHandler  } = useMap()
+const { initializeMap,addMakers, flyTo, companySelect, content, setupClickHandler  } = useMap()
 
 
 const useCompany = useCompanies()
@@ -44,15 +44,8 @@ watch((companySelect)=>(novo,velho)=>{
 onMounted(()=>{
   initializeMap()
   addMakers(points.value)
-
+  setupClickHandler()
 })
-
-onBeforeMount(async()=>{
-  await useCompany.getCategories()
-  await useCompany.getStates()
-})
-
-
 
 
 </script>

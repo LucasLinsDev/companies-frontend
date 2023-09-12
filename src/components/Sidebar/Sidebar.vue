@@ -31,7 +31,6 @@ import Logout from './Logout.vue'
   display:flex;
   flex-direction:column;
   align-items:center;
-
 }
 
 
